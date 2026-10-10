@@ -1,4 +1,4 @@
-# Compresión de imágenes con Quadtree (JavaScript)
+# Compresión de imágenes con Quadtree 
 
 Proyecto de Diseño y Análisis de Algoritmos. Comprime imágenes en escala de grises con un Quadtree hecho con divide y vencerás, y mide qué tanto se comprime y cuánto error hay.
 
@@ -55,4 +55,4 @@ q.guardarImagen(rec, "reconstruida.png");
 
 ## Uso de IA
 
-Este proyecto se hizo con ayuda de un asistente de IA (Claude). Esto debe indicarse en la entrega, como pide el documento del trabajo.
+Este proyecto se hizo con ayuda de un asistente de IA (Claude), incluyendo correcciones en las explicaciones escritas
