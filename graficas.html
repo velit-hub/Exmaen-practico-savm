@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Graficas del proyecto Quadtree</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body style="font-family: sans-serif; max-width: 700px; margin: auto;">
+<h2>Graficas del proyecto Quadtree</h2>
+<h3>1. Tiempo vs numero de pixeles (tolerancia 10)</h3>
+<canvas id="g1"></canvas>
+<h3>2. Hojas vs tolerancia (imagenes de 256x256, escala log)</h3>
+<canvas id="g2"></canvas>
+<h3>3. Razon de compresion vs MSE (todos los experimentos, escala log)</h3>
+<canvas id="g3"></canvas>
+<script>
+const datos = {"tiempo":[{"label":"uniforme","borderColor":"#2a9d8f","backgroundColor":"#2a9d8f","data":[{"x":4096,"y":0.00121},{"x":16384,"y":0.00006},{"x":65536,"y":0.00023}]},{"label":"bloques","borderColor":"#e9a820","backgroundColor":"#e9a820","data":[{"x":4096,"y":0.00015},{"x":16384,"y":0.00035},{"x":65536,"y":0.00097}]},{"label":"detalle","borderColor":"#d1495b","backgroundColor":"#d1495b","data":[{"x":4096,"y":0.01644},{"x":16384,"y":0.01428},{"x":65536,"y":0.06333}]}],"hojas":[{"label":"uniforme","borderColor":"#2a9d8f","backgroundColor":"#2a9d8f","data":[{"x":0,"y":1},{"x":10,"y":1},{"x":30,"y":1}]},{"label":"bloques","borderColor":"#e9a820","backgroundColor":"#e9a820","data":[{"x":0,"y":16},{"x":10,"y":16},{"x":30,"y":13}]},{"label":"detalle","borderColor":"#d1495b","backgroundColor":"#d1495b","data":[{"x":0,"y":65299},{"x":10,"y":64798},{"x":30,"y":60019}]}],"compresion":[{"label":"uniforme","borderColor":"#2a9d8f","backgroundColor":"#2a9d8f","showLine":false,"data":[{"x":0,"y":799.22},{"x":0,"y":799.22},{"x":0,"y":799.22},{"x":0,"y":3196.878},{"x":0,"y":3196.878},{"x":0,"y":3196.878},{"x":0,"y":12787.512},{"x":0,"y":12787.512},{"x":0,"y":12787.512}]},{"label":"bloques","borderColor":"#e9a820","backgroundColor":"#e9a820","showLine":false,"data":[{"x":0,"y":181.039},{"x":0,"y":181.039},{"x":42.25,"y":214.17},{"x":0,"y":724.155},{"x":0,"y":724.155},{"x":42.25,"y":856.68},{"x":0,"y":2896.619},{"x":0,"y":2896.619},{"x":42.25,"y":3426.719}]},{"label":"detalle","borderColor":"#d1495b","backgroundColor":"#d1495b","showLine":false,"data":[{"x":0,"y":0.86},{"x":0.13,"y":0.869},{"x":8.37,"y":0.937},{"x":0,"y":0.861},{"x":0.098,"y":0.869},{"x":8.401,"y":0.937},{"x":0,"y":0.86},{"x":0.089,"y":0.867},{"x":8.622,"y":0.936}]}]};
+function hacer(id, datasets, xTitulo, yTitulo, log) {
+  new Chart(document.getElementById(id), {
+    type: "scatter",
+    data: { datasets: datasets },
+    options: {
+      showLine: true,
+      scales: {
+        x: { title: { display: true, text: xTitulo } },
+        y: { type: log ? "logarithmic" : "linear", title: { display: true, text: yTitulo } },
+      },
+    },
+  });
+}
+hacer("g1", datos.tiempo, "Numero de pixeles", "Tiempo (segundos)", false);
+hacer("g2", datos.hojas, "Tolerancia", "Numero de hojas", true);
+hacer("g3", datos.compresion, "MSE", "Razon de compresion", true);
+</script>
+</body>
+</html>
